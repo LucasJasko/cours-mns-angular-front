@@ -1,4 +1,12 @@
 <div class="container">
+  <button
+    mat-raised-button
+    routerLink="/ajout-produit"
+    routerLinkActive="router-link-active"
+  >
+    Ajouter produit
+  </button>
+
   <div class="row row-cols-2">
     @for (item of this.userList; track $index) {
     <div class="px-2">
@@ -9,7 +17,9 @@
         </mat-card-header>
         <mat-card-content>
           <p>
-            date: {{ item.date | date : "shortDate" }} Value: {{ item.value }}
+            date: {{ item.date | date : "shortDate" }}
+            <br />
+            Value: {{ item.value }}
           </p>
         </mat-card-content>
         <mat-card-actions>
