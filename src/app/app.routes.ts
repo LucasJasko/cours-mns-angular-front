@@ -1,3 +1,13 @@
 import { Routes } from '@angular/router';
+import { AccueilComponent } from './pages/accueil/accueil.component';
+import { InscriptionComponent } from './pages/inscription/inscription.component';
+import { ConnectionComponent } from './pages/connection/connection.component';
+import { Page404Component } from './pages/page404/page404.component';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+  { path: 'accueil', component: AccueilComponent },
+  { path: 'connection', component: ConnectionComponent },
+  { path: 'inscription', component: InscriptionComponent },
+  { path: '', redirectTo: 'accueil', pathMatch: 'full' },
+  { path: '**', component: Page404Component },
+];
