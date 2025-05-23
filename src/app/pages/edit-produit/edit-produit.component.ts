@@ -8,6 +8,9 @@ import {
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificationService } from '../../services/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-produit',
@@ -17,6 +20,8 @@ import { MatInputModule } from '@angular/material/input';
 })
 export class EditProduitComponent {
   formBuilder = inject(FormBuilder);
+  notification = inject(NotificationService);
+  router = inject(Router);
   http = inject(HttpClient);
   formulaire = this.formBuilder.group({
     nom: ['', [Validators.required, Validators.maxLength(20)]],
@@ -27,7 +32,17 @@ export class EditProduitComponent {
     if (this.formulaire.valid) {
       this.http
         .post('http://localhost:5000/product', this.formulaire.value)
-        .subscribe((res) => console.log(res));
+        .subscribe({
+          next: (res) => {
+            this.notification.show('Le produit a bien été ajouté ! ', 'valid');
+            this.router.navigateByUrl('/accueil');
+          },
+          error: (err) => {
+            if (err.status === 409) {
+              this.notification.show('Un produit porte déjà ce nom', 'error');
+            }
+          },
+        });
     }
   }
 }
