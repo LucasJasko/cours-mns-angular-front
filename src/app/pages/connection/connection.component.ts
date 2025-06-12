@@ -28,5 +28,7 @@ export class ConnectionComponent {
     password: ['', [Validators.required, Validators.maxLength(50)]],
   });
 
-  onConnection() {}
+  onConnection() {
+    this.http.post('http://localhost:5000/connexion', this.formulaire.value);
+  }
 }

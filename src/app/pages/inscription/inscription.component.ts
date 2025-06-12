@@ -28,5 +28,24 @@ export class InscriptionComponent {
     password: ['', [Validators.required, Validators.maxLength(50)]],
   });
 
-  onInscription() {}
+  onInscription() {
+    if (this.formulaire.valid) {
+      this.http
+        .post('http://localhost:5000/inscription', this.formulaire.value)
+        .subscribe({
+          next: (res) => {
+            this.notification.show(
+              'Vous etes inscrit, vous pouvez vous connecter !',
+              'valid'
+            );
+            this.router.navigateByUrl('/connection');
+          },
+          error: (err) => {
+            if (err.status === 409) {
+              this.notification.show('Cet email est déjà utilisé', 'error');
+            }
+          },
+        });
+    }
+  }
 }
