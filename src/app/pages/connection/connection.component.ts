@@ -29,6 +29,10 @@ export class ConnectionComponent {
   });
 
   onConnection() {
-    this.http.post('http://localhost:5000/connexion', this.formulaire.value);
+    this.http
+      .post('http://localhost:5000/connexion', this.formulaire.value, {
+        responseType: 'text',
+      })
+      .subscribe((jwt) => localStorage.setItem('token', jwt));
   }
 }
