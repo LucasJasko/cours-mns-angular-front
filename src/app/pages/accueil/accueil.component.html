@@ -7,14 +7,20 @@
     Ajouter produit
   </button>
 
-  <div class="row row-cols-2">
+  <div class="row row-cols-3">
     @for (item of this.userList; track $index) {
     <div class="px-2">
-      <mat-card appearance="outlined" class="mt-4">
+      <mat-card appearance="outlined" class="mt-4 card-container">
         <mat-card-header>
           <mat-card-title>{{ item.name }}</mat-card-title>
           <mat-card-subtitle>ID: {{ item.id }}</mat-card-subtitle>
         </mat-card-header>
+        <img
+          class="card-img"
+          mat-card-image
+          src="https://picsum.photos/350"
+          alt="Photo of a Shiba Inu"
+        />
         <mat-card-content>
           <p>
             date: {{ item.date | date : "shortDate" }}
