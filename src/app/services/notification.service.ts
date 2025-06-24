@@ -8,7 +8,7 @@ export class NotificationService {
   notification = inject(MatSnackBar);
   show(message: string, type: 'info' | 'valid' | 'error' | 'warning') {
     this.notification.open(message, '', {
-      verticalPosition: 'top',
+      verticalPosition: 'bottom',
       duration: 5000,
       panelClass: type,
     });

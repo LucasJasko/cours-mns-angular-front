@@ -30,14 +30,8 @@
             >Inscription</a
           >
         </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            routerLink="/connection"
-            routerLinkActive="page-actuelle"
-            >Connexion</a
-          >
-        </li>
+        @if (authService.user?.role == "administrateur" ||
+        authService.user?.role == "vendeur") {
         <li class="nav-item">
           <a
             class="nav-link"
@@ -46,6 +40,26 @@
             >Ajouter un produit</a
           >
         </li>
+        } @if (authService.user) {
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/connection"
+            routerLinkActive="page-actuelle"
+            (click)="onLogOut()"
+            >Deconnexion</a
+          >
+        </li>
+        } @else {
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/connection"
+            routerLinkActive="page-actuelle"
+            >Connexion</a
+          >
+        </li>
+        }
       </ul>
       <form class="d-flex">
         <input
