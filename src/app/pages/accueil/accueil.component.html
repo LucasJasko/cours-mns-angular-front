@@ -35,7 +35,9 @@
           <button mat-button>Ajouter</button>
           @if(authService.user?.role == "administrateur" ||
           authService.user?.role == "vendeur") {
-          <button mat-button>Modifier</button>
+          <button mat-button routerLink="/modifier-produit/{{ item.id }}">
+            Modifier
+          </button>
           <button mat-button (click)="onDelete(item)">Supprimer</button>}
         </mat-card-actions>
       </mat-card>

@@ -1,9 +1,9 @@
 <form (ngSubmit)="onAddProduct()" [formGroup]="formulaire">
   <mat-form-field>
     <mat-label>Nom</mat-label>
-    <input matInput placeholder="Ex. Pizza" formControlName="nom" />
+    <input matInput placeholder="Ex. Pizza" formControlName="name" />
 
-    @if(formulaire.get('nom')?.hasError("required")) {
+    @if(formulaire.get('name')?.hasError("required")) {
     <mat-error>Le nom est requis</mat-error>
     } @else {
     <mat-error>Le nom ne peut pas avoir plus de 20 caractères</mat-error>
@@ -23,6 +23,6 @@
   </mat-form-field>
 
   <button [disabled]="!formulaire.valid" mat-raised-button type="submit">
-    Ajouter le produit
+    {{ produitEditer ? "Modifier le produit" : "Ajouter le produit" }}
   </button>
 </form>

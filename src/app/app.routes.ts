@@ -15,6 +15,11 @@ export const routes: Routes = [
     component: EditProduitComponent,
     canActivate: [vendeurGuard],
   },
+  {
+    path: 'modifier-produit/:id',
+    component: EditProduitComponent,
+    canActivate: [vendeurGuard],
+  },
   { path: '', redirectTo: 'accueil', pathMatch: 'full' },
   { path: '**', component: Page404Component },
 ];
